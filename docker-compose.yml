@@ -9,8 +9,8 @@ services:
             cluster.name: "docker-cluster"
         volumes:
             - type: volume
-            source: ./data
-            target: /usr/share/elasticsearch/data
+              source: data
+              target: /usr/share/elasticsearch/data
         ports:
             - "9200:9200"
             - "9300:9300"
