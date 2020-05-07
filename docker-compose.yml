@@ -19,6 +19,8 @@ services:
     
     logstash:
         image: docker.elastic.co/logstash/logstash:7.6.2
+        environment:
+            PIPELINE_WORKERS: 1
         volumes:
             - type: bind
               source: ./pipeline
