@@ -1,0 +1,645 @@
+2019-01-12 22:50:39,462 : Adding domain part to PCI slot 0000:06:00.0
+2019-01-12 22:50:39,463 : Adding domain part to PCI slot 0000:06:00.1
+2019-01-12 22:50:39,464 : Creating result directory: /tmp/results_2019-01-12_22-50-39
+2019-01-12 22:50:39,469 : ############################################################
+2019-01-12 22:50:39,469 : # Test:    phy2phy_cont
+2019-01-12 22:50:39,469 : # Details: Phy2Phy Continuous Stream
+2019-01-12 22:50:39,470 : ############################################################
+2019-01-12 22:50:39,471 : Hugepages free: 16 
+2019-01-12 22:50:39,471 : Found '16' free hugepage(s).
+2019-01-12 22:50:39,476 : Mounting hugepages...
+2019-01-12 22:50:39,476 : cmd : sudo mount -t hugetlbfs nodev /dev/hugepages
+2019-01-12 22:50:39,489 : Controllers:
+2019-01-12 22:50:40,524 : Class found: IxNet.
+2019-01-12 22:50:40,525 : __init__
+2019-01-12 22:50:40,540 : Class found: QemuDpdkVhostUser.
+2019-01-12 22:50:40,540 : get_vnfs 0 VNF[s] with 
+2019-01-12 22:50:40,540 : Hugepages size: 1048576 kb
+2019-01-12 22:50:40,540 : get_vnfs_number 0 VNF[s]
+2019-01-12 22:50:40,541 : Hugepages free: 16 
+2019-01-12 22:50:40,541 : Need 1.0 hugepages free for dpdk socket 0
+2019-01-12 22:50:40,541 : Hugepages free: 8 on socket 0
+2019-01-12 22:50:40,541 : Need 1.0 hugepages free for dpdk socket 1
+2019-01-12 22:50:40,542 : Hugepages free: 8 on socket 1
+2019-01-12 22:50:40,542 : Need a total of 2.0 total hugepages
+2019-01-12 22:50:40,542 : get_vnfs_number 0 VNF[s]
+2019-01-12 22:50:40,567 : Class found: OvsDpdkVhost.
+2019-01-12 22:50:40,576 : Creation using <class 'ovs_dpdk_vhost.OvsDpdkVhost'>
+2019-01-12 22:50:40,597 : Class found: Collectd.
+2019-01-12 22:50:40,620 : Bound socket socket 127.0.0.1:25826
+2019-01-12 22:50:40,623 : Loaded collectd types from /opt/collectd/share/collectd/types.db
+2019-01-12 22:50:40,624 : Staring Collectd
+2019-01-12 22:50:40,624 : cmd : sudo /opt/collectd/sbin/collectd
+2019-01-12 22:50:40,635 : Class found: DummyLoadGen.
+2019-01-12 22:50:40,635 : Setup:
+2019-01-12 22:50:40,635 : Setup using <class 'ovs_dpdk_vhost.OvsDpdkVhost'>
+2019-01-12 22:50:40,636 : Modprobe module 'uio'...
+2019-01-12 22:50:40,636 : cmd : sudo modprobe uio
+2019-01-12 22:50:40,658 : Module already loaded 'uio'.
+2019-01-12 22:50:40,658 : Insmod module 'igb_uio'...
+2019-01-12 22:50:40,658 : cmd : sudo insmod /home/opnfv/vswitchperf_ieee_demo/src/dpdk/dpdk/x86_64-native-linuxapp-gcc/kmod/igb_uio.ko
+2019-01-12 22:50:40,673 : Removing '/dev/vhost-net' directory...
+2019-01-12 22:50:40,673 : cmd : sudo rm -f /dev/vhost-net
+2019-01-12 22:50:40,687 : Binding NICs ['0000:06:00.0', '0000:06:00.1']...
+2019-01-12 22:50:40,687 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/dpdk/dpdk/usertools/dpdk-devbind.py --bind=igb_uio 0000:06:00.0 0000:06:00.1
+2019-01-12 22:50:41,074 : Starting vswitchd...
+2019-01-12 22:50:41,074 : Resetting system after last run...
+2019-01-12 22:50:41,075 : Creating backup of ovs_var_tmp directory...
+2019-01-12 22:50:41,075 : cmd : sudo mv /usr/local/var/run/openvswitch /usr/local/var/run/openvswitch.20190112_225041_2743
+2019-01-12 22:50:41,102 : Creating backup of ovs_etc_tmp directory...
+2019-01-12 22:50:41,102 : cmd : sudo mv /usr/local/etc/openvswitch /usr/local/etc/openvswitch.20190112_225041_2743
+2019-01-12 22:50:41,116 : cmd : sudo mkdir -p /usr/local/var/run/openvswitch/
+2019-01-12 22:50:41,131 : cmd : sudo mkdir -p /usr/local/etc/openvswitch/
+2019-01-12 22:50:41,145 : System reset after last run.
+2019-01-12 22:50:41,145 : Creating ovsdb configuration database...
+2019-01-12 22:50:41,146 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/ovsdb/ovsdb-tool create /usr/local/etc/openvswitch/conf.db /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/vswitchd/vswitch.ovsschema
+2019-01-12 22:50:41,321 : Starting ovsdb-server...
+2019-01-12 22:50:41,321 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/ovsdb/ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --pidfile=/usr/local/var/run/openvswitch/ovsdb-server.pid --overwrite-pidfile
+2019-01-12 22:50:44,336 : set attribute
+2019-01-12 22:50:44,336 : Running ovs-vsctl...
+2019-01-12 22:50:44,336 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-socket-mem=1024,1024
+2019-01-12 22:50:44,353 : set attribute
+2019-01-12 22:50:44,353 : Running ovs-vsctl...
+2019-01-12 22:50:44,353 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-init=true
+2019-01-12 22:50:44,383 : set attribute
+2019-01-12 22:50:44,383 : Running ovs-vsctl...
+2019-01-12 22:50:44,383 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-lcore-mask=0x4
+2019-01-12 22:50:44,402 : Starting ovs-vswitchd...
+2019-01-12 22:50:44,402 : cmd : /bin/bash -c "sudo -E /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/vswitchd/ovs-vswitchd --pidfile=/usr/local/var/run/openvswitch/ovs-vswitchd.pid --overwrite-pidfile --log-file=/tmp/vswitchd.log"
+2019-01-12 22:50:49,489 : Vswitchd...Started.
+2019-01-12 22:50:49,490 : create bridge
+2019-01-12 22:50:49,490 : add bridge
+2019-01-12 22:50:49,490 : Running ovs-vsctl...
+2019-01-12 22:50:49,491 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --timeout 10 add-br vsperf-br0 -- set bridge vsperf-br0 datapath_type=netdev
+2019-01-12 22:50:49,522 : delete flow
+2019-01-12 22:50:49,522 : key : 
+2019-01-12 22:50:49,523 : Running ovs-ofctl...
+2019-01-12 22:50:49,523 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-ofctl --timeout 10 -O OpenFlow13 del-flows vsperf-br0 
+2019-01-12 22:50:49,540 : set attribute
+2019-01-12 22:50:49,540 : Running ovs-vsctl...
+2019-01-12 22:50:49,540 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --timeout 10 set Open_vSwitch . other_config:max-idle=30000
+2019-01-12 22:50:49,557 : set attribute
+2019-01-12 22:50:49,557 : Running ovs-vsctl...
+2019-01-12 22:50:49,558 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --timeout 10 set Open_vSwitch . other_config:pmd-cpu-mask=30
+2019-01-12 22:50:49,576 : add port
+2019-01-12 22:50:49,577 : Running ovs-vsctl...
+2019-01-12 22:50:49,577 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --timeout 10 add-port vsperf-br0 dpdk0 -- set Interface dpdk0 type=dpdk options:dpdk-devargs=0000:06:00.0
+2019-01-12 22:50:50,170 : add port
+2019-01-12 22:50:50,171 : Running ovs-vsctl...
+2019-01-12 22:50:50,171 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --timeout 10 add-port vsperf-br0 dpdk1 -- set Interface dpdk1 type=dpdk options:dpdk-devargs=0000:06:00.1
+2019-01-12 22:50:50,635 : key : in_port=1,idle_timeout=0,action=output:2
+2019-01-12 22:50:50,636 : Running ovs-ofctl...
+2019-01-12 22:50:50,636 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-ofctl --timeout 10 -O OpenFlow13 add-flow vsperf-br0 in_port=1,idle_timeout=0,action=output:2
+2019-01-12 22:50:50,653 : key : in_port=2,idle_timeout=0,action=output:1
+2019-01-12 22:50:50,654 : Running ovs-ofctl...
+2019-01-12 22:50:50,654 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-ofctl --timeout 10 -O OpenFlow13 add-flow vsperf-br0 in_port=2,idle_timeout=0,action=output:1
+2019-01-12 22:50:50,669 : start 0 VNF[s] with 
+2019-01-12 22:50:50,669 : send_traffic with <ixnet.IxNet object at 0x7f42154f9cf8>
+2019-01-12 22:50:50,670 : IXIA configuration configuration : {'chassis': '10.10.50.6', 'port1': '5', 'lib_path': '/opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork', 'port': '9127', 'port2': '6', 'output_dir': 'c:/ixia_results/vsperf_sandbox', 'user': 'vsperf_sandbox', 'machine': '10.10.120.6', 'card': '1'}
+2019-01-12 22:50:50,670 : gencmd : set chassis 10.10.50.6
+2019-01-12 22:50:50,671 : gencmd : set port1 5
+2019-01-12 22:50:50,671 : gencmd : set lib_path /opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork
+2019-01-12 22:50:50,671 : gencmd : set bidir True
+2019-01-12 22:50:50,671 : gencmd : set port 9127
+2019-01-12 22:50:50,672 : gencmd : set port2 6
+2019-01-12 22:50:50,672 : gencmd : set output_dir c:/ixia_results/vsperf_sandbox
+2019-01-12 22:50:50,672 : gencmd : set user vsperf_sandbox
+2019-01-12 22:50:50,672 : gencmd : set machine 10.10.120.6
+2019-01-12 22:50:50,673 : gencmd : set card 1
+2019-01-12 22:50:50,673 : gencmd : dict set traffic l4 srcport 3000
+2019-01-12 22:50:50,673 : gencmd : dict set traffic l4 enabled 1
+2019-01-12 22:50:50,674 : gencmd : dict set traffic l4 dstport 3001
+2019-01-12 22:50:50,674 : gencmd : dict set traffic traffic_type rfc2544_continuous
+2019-01-12 22:50:50,674 : gencmd : dict set traffic vlan id 0
+2019-01-12 22:50:50,674 : gencmd : dict set traffic vlan priority 0
+2019-01-12 22:50:50,675 : gencmd : dict set traffic vlan enabled 0
+2019-01-12 22:50:50,675 : gencmd : dict set traffic vlan cfi 0
+2019-01-12 22:50:50,675 : gencmd : dict set traffic multistream 0
+2019-01-12 22:50:50,676 : gencmd : dict set traffic bidir True
+2019-01-12 22:50:50,676 : gencmd : dict set traffic latency_histogram type Default
+2019-01-12 22:50:50,676 : gencmd : dict set traffic latency_histogram enabled 0
+2019-01-12 22:50:50,676 : gencmd : dict set traffic l2 srcmac 00:00:00:00:00:00
+2019-01-12 22:50:50,677 : gencmd : dict set traffic l2 framesize 64
+2019-01-12 22:50:50,677 : gencmd : dict set traffic l2 dstmac 00:00:00:00:00:00
+2019-01-12 22:50:50,677 : gencmd : dict set traffic learning_frames 1
+2019-01-12 22:50:50,677 : gencmd : dict set traffic burst_size 100
+2019-01-12 22:50:50,678 : gencmd : dict set traffic l3 proto udp
+2019-01-12 22:50:50,678 : gencmd : dict set traffic l3 dstip 90.90.90.90
+2019-01-12 22:50:50,678 : gencmd : dict set traffic l3 enabled 1
+2019-01-12 22:50:50,678 : gencmd : dict set traffic l3 srcip 1.1.1.1
+2019-01-12 22:50:50,678 : gencmd : dict set traffic stream_type L4
+2019-01-12 22:50:50,678 : gencmd : dict set traffic pre_installed_flows No
+2019-01-12 22:50:50,679 : gencmd : dict set traffic flow_type port
+2019-01-12 22:50:50,679 : gencmd : dict set traffic capture count 1
+2019-01-12 22:50:50,679 : gencmd : dict set traffic capture set tx_ports {0}
+2019-01-12 22:50:50,679 : gencmd : dict set traffic capture set rx_ports {1}
+2019-01-12 22:50:50,679 : gencmd : dict set traffic capture enabled 0
+2019-01-12 22:50:50,679 : gencmd : dict set traffic capture filter {}
+2019-01-12 22:50:50,680 : gencmd : dict set traffic flow_control 0
+2019-01-12 22:50:50,680 : gencmd : dict set traffic frame_rate 100
+2019-01-12 22:50:50,680 : gencmd : dict set traffic scapy 0 Ether(src={Ether_src}, dst={Ether_dst})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_src}, dst={IP_dst})/{IP_PROTO}(sport={IP_PROTO_sport}, dport={IP_PROTO_dport})
+2019-01-12 22:50:50,680 : gencmd : dict set traffic scapy 1 Ether(src={Ether_dst}, dst={Ether_src})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_dst}, dst={IP_src})/{IP_PROTO}(sport={IP_PROTO_dport}, dport={IP_PROTO_sport})
+2019-01-12 22:50:50,680 : gencmd : dict set traffic scapy enabled 0
+2019-01-12 22:50:50,681 : gencmd : dict set config rfc2544TestType throughput
+2019-01-12 22:50:50,681 : gencmd : dict set config streamType L4
+2019-01-12 22:50:50,681 : gencmd : dict set config binary 0
+2019-01-12 22:50:50,681 : gencmd : dict set config learningFrames True
+2019-01-12 22:50:50,681 : gencmd : dict set config flowControl False
+2019-01-12 22:50:50,681 : gencmd : dict set config multipleStreams 0
+2019-01-12 22:50:50,681 : gencmd : dict set config framerate 100
+2019-01-12 22:50:50,682 : gencmd : dict set config duration 30
+2019-01-12 22:50:50,682 : gencmd : source {/home/opnfv/vswitchperf_ieee_demo/3rd_party/ixia/ixnetrfc2544.tcl}
+2019-01-12 22:50:50,684 : gencmd : startRfc2544Test $config $traffic
+2019-01-12 22:51:50,701 : gencmd : waitForRfc2544Test
+2019-01-12 22:52:59,481 : IXIA configuration configuration : {'chassis': '10.10.50.6', 'port1': '5', 'lib_path': '/opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork', 'port': '9127', 'port2': '6', 'output_dir': 'c:/ixia_results/vsperf_sandbox', 'user': 'vsperf_sandbox', 'machine': '10.10.120.6', 'card': '1'}
+2019-01-12 22:52:59,481 : gencmd : set chassis 10.10.50.6
+2019-01-12 22:52:59,482 : gencmd : set port1 5
+2019-01-12 22:52:59,482 : gencmd : set lib_path /opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork
+2019-01-12 22:52:59,482 : gencmd : set bidir True
+2019-01-12 22:52:59,482 : gencmd : set port 9127
+2019-01-12 22:52:59,482 : gencmd : set port2 6
+2019-01-12 22:52:59,482 : gencmd : set output_dir c:/ixia_results/vsperf_sandbox
+2019-01-12 22:52:59,482 : gencmd : set user vsperf_sandbox
+2019-01-12 22:52:59,483 : gencmd : set machine 10.10.120.6
+2019-01-12 22:52:59,483 : gencmd : set card 1
+2019-01-12 22:52:59,483 : gencmd : dict set traffic l4 srcport 3000
+2019-01-12 22:52:59,483 : gencmd : dict set traffic l4 enabled 1
+2019-01-12 22:52:59,483 : gencmd : dict set traffic l4 dstport 3001
+2019-01-12 22:52:59,483 : gencmd : dict set traffic traffic_type rfc2544_continuous
+2019-01-12 22:52:59,484 : gencmd : dict set traffic vlan id 0
+2019-01-12 22:52:59,484 : gencmd : dict set traffic vlan priority 0
+2019-01-12 22:52:59,484 : gencmd : dict set traffic vlan enabled 0
+2019-01-12 22:52:59,484 : gencmd : dict set traffic vlan cfi 0
+2019-01-12 22:52:59,484 : gencmd : dict set traffic multistream 0
+2019-01-12 22:52:59,484 : gencmd : dict set traffic bidir True
+2019-01-12 22:52:59,485 : gencmd : dict set traffic latency_histogram type Default
+2019-01-12 22:52:59,485 : gencmd : dict set traffic latency_histogram enabled 0
+2019-01-12 22:52:59,485 : gencmd : dict set traffic l2 srcmac 00:00:00:00:00:00
+2019-01-12 22:52:59,485 : gencmd : dict set traffic l2 framesize 128
+2019-01-12 22:52:59,485 : gencmd : dict set traffic l2 dstmac 00:00:00:00:00:00
+2019-01-12 22:52:59,485 : gencmd : dict set traffic learning_frames 1
+2019-01-12 22:52:59,486 : gencmd : dict set traffic burst_size 100
+2019-01-12 22:52:59,486 : gencmd : dict set traffic l3 proto udp
+2019-01-12 22:52:59,486 : gencmd : dict set traffic l3 dstip 90.90.90.90
+2019-01-12 22:52:59,486 : gencmd : dict set traffic l3 enabled 1
+2019-01-12 22:52:59,486 : gencmd : dict set traffic l3 srcip 1.1.1.1
+2019-01-12 22:52:59,487 : gencmd : dict set traffic stream_type L4
+2019-01-12 22:52:59,487 : gencmd : dict set traffic pre_installed_flows No
+2019-01-12 22:52:59,487 : gencmd : dict set traffic flow_type port
+2019-01-12 22:52:59,487 : gencmd : dict set traffic capture count 1
+2019-01-12 22:52:59,487 : gencmd : dict set traffic capture set tx_ports {0}
+2019-01-12 22:52:59,487 : gencmd : dict set traffic capture set rx_ports {1}
+2019-01-12 22:52:59,488 : gencmd : dict set traffic capture enabled 0
+2019-01-12 22:52:59,488 : gencmd : dict set traffic capture filter {}
+2019-01-12 22:52:59,488 : gencmd : dict set traffic flow_control 0
+2019-01-12 22:52:59,488 : gencmd : dict set traffic frame_rate 100
+2019-01-12 22:52:59,488 : gencmd : dict set traffic scapy 0 Ether(src={Ether_src}, dst={Ether_dst})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_src}, dst={IP_dst})/{IP_PROTO}(sport={IP_PROTO_sport}, dport={IP_PROTO_dport})
+2019-01-12 22:52:59,488 : gencmd : dict set traffic scapy 1 Ether(src={Ether_dst}, dst={Ether_src})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_dst}, dst={IP_src})/{IP_PROTO}(sport={IP_PROTO_dport}, dport={IP_PROTO_sport})
+2019-01-12 22:52:59,489 : gencmd : dict set traffic scapy enabled 0
+2019-01-12 22:52:59,489 : gencmd : dict set config rfc2544TestType throughput
+2019-01-12 22:52:59,489 : gencmd : dict set config streamType L4
+2019-01-12 22:52:59,489 : gencmd : dict set config binary 0
+2019-01-12 22:52:59,489 : gencmd : dict set config learningFrames True
+2019-01-12 22:52:59,489 : gencmd : dict set config flowControl False
+2019-01-12 22:52:59,490 : gencmd : dict set config multipleStreams 0
+2019-01-12 22:52:59,490 : gencmd : dict set config framerate 100
+2019-01-12 22:52:59,490 : gencmd : dict set config duration 30
+2019-01-12 22:52:59,490 : gencmd : source {/home/opnfv/vswitchperf_ieee_demo/3rd_party/ixia/ixnetrfc2544.tcl}
+2019-01-12 22:52:59,493 : gencmd : startRfc2544Test $config $traffic
+2019-01-12 22:53:58,452 : gencmd : waitForRfc2544Test
+2019-01-12 23:04:10,415 : IXIA configuration configuration : {'chassis': '10.10.50.6', 'port1': '5', 'lib_path': '/opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork', 'port': '9127', 'port2': '6', 'output_dir': 'c:/ixia_results/vsperf_sandbox', 'user': 'vsperf_sandbox', 'machine': '10.10.120.6', 'card': '1'}
+2019-01-12 23:04:10,416 : gencmd : set chassis 10.10.50.6
+2019-01-12 23:04:10,416 : gencmd : set port1 5
+2019-01-12 23:04:10,416 : gencmd : set lib_path /opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork
+2019-01-12 23:04:10,416 : gencmd : set bidir True
+2019-01-12 23:04:10,416 : gencmd : set port 9127
+2019-01-12 23:04:10,416 : gencmd : set port2 6
+2019-01-12 23:04:10,416 : gencmd : set output_dir c:/ixia_results/vsperf_sandbox
+2019-01-12 23:04:10,417 : gencmd : set user vsperf_sandbox
+2019-01-12 23:04:10,417 : gencmd : set machine 10.10.120.6
+2019-01-12 23:04:10,417 : gencmd : set card 1
+2019-01-12 23:04:10,417 : gencmd : dict set traffic l4 srcport 3000
+2019-01-12 23:04:10,417 : gencmd : dict set traffic l4 enabled 1
+2019-01-12 23:04:10,417 : gencmd : dict set traffic l4 dstport 3001
+2019-01-12 23:04:10,418 : gencmd : dict set traffic traffic_type rfc2544_continuous
+2019-01-12 23:04:10,418 : gencmd : dict set traffic vlan id 0
+2019-01-12 23:04:10,418 : gencmd : dict set traffic vlan priority 0
+2019-01-12 23:04:10,418 : gencmd : dict set traffic vlan enabled 0
+2019-01-12 23:04:10,418 : gencmd : dict set traffic vlan cfi 0
+2019-01-12 23:04:10,418 : gencmd : dict set traffic multistream 0
+2019-01-12 23:04:10,419 : gencmd : dict set traffic bidir True
+2019-01-12 23:04:10,419 : gencmd : dict set traffic latency_histogram type Default
+2019-01-12 23:04:10,419 : gencmd : dict set traffic latency_histogram enabled 0
+2019-01-12 23:04:10,419 : gencmd : dict set traffic l2 srcmac 00:00:00:00:00:00
+2019-01-12 23:04:10,419 : gencmd : dict set traffic l2 framesize 256
+2019-01-12 23:04:10,419 : gencmd : dict set traffic l2 dstmac 00:00:00:00:00:00
+2019-01-12 23:04:10,420 : gencmd : dict set traffic learning_frames 1
+2019-01-12 23:04:10,420 : gencmd : dict set traffic burst_size 100
+2019-01-12 23:04:10,420 : gencmd : dict set traffic l3 proto udp
+2019-01-12 23:04:10,420 : gencmd : dict set traffic l3 dstip 90.90.90.90
+2019-01-12 23:04:10,420 : gencmd : dict set traffic l3 enabled 1
+2019-01-12 23:04:10,420 : gencmd : dict set traffic l3 srcip 1.1.1.1
+2019-01-12 23:04:10,421 : gencmd : dict set traffic stream_type L4
+2019-01-12 23:04:10,421 : gencmd : dict set traffic pre_installed_flows No
+2019-01-12 23:04:10,421 : gencmd : dict set traffic flow_type port
+2019-01-12 23:04:10,421 : gencmd : dict set traffic capture count 1
+2019-01-12 23:04:10,421 : gencmd : dict set traffic capture set tx_ports {0}
+2019-01-12 23:04:10,421 : gencmd : dict set traffic capture set rx_ports {1}
+2019-01-12 23:04:10,422 : gencmd : dict set traffic capture enabled 0
+2019-01-12 23:04:10,422 : gencmd : dict set traffic capture filter {}
+2019-01-12 23:04:10,422 : gencmd : dict set traffic flow_control 0
+2019-01-12 23:04:10,422 : gencmd : dict set traffic frame_rate 100
+2019-01-12 23:04:10,422 : gencmd : dict set traffic scapy 0 Ether(src={Ether_src}, dst={Ether_dst})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_src}, dst={IP_dst})/{IP_PROTO}(sport={IP_PROTO_sport}, dport={IP_PROTO_dport})
+2019-01-12 23:04:10,422 : gencmd : dict set traffic scapy 1 Ether(src={Ether_dst}, dst={Ether_src})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_dst}, dst={IP_src})/{IP_PROTO}(sport={IP_PROTO_dport}, dport={IP_PROTO_sport})
+2019-01-12 23:04:10,423 : gencmd : dict set traffic scapy enabled 0
+2019-01-12 23:04:10,423 : gencmd : dict set config rfc2544TestType throughput
+2019-01-12 23:04:10,423 : gencmd : dict set config streamType L4
+2019-01-12 23:04:10,423 : gencmd : dict set config binary 0
+2019-01-12 23:04:10,423 : gencmd : dict set config learningFrames True
+2019-01-12 23:04:10,423 : gencmd : dict set config flowControl False
+2019-01-12 23:04:10,424 : gencmd : dict set config multipleStreams 0
+2019-01-12 23:04:10,424 : gencmd : dict set config framerate 100
+2019-01-12 23:04:10,424 : gencmd : dict set config duration 30
+2019-01-12 23:04:10,424 : gencmd : source {/home/opnfv/vswitchperf_ieee_demo/3rd_party/ixia/ixnetrfc2544.tcl}
+2019-01-12 23:04:10,427 : gencmd : startRfc2544Test $config $traffic
+2019-01-12 23:05:09,608 : gencmd : waitForRfc2544Test
+2019-01-12 23:15:22,386 : IXIA configuration configuration : {'chassis': '10.10.50.6', 'port1': '5', 'lib_path': '/opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork', 'port': '9127', 'port2': '6', 'output_dir': 'c:/ixia_results/vsperf_sandbox', 'user': 'vsperf_sandbox', 'machine': '10.10.120.6', 'card': '1'}
+2019-01-12 23:15:22,386 : gencmd : set chassis 10.10.50.6
+2019-01-12 23:15:22,386 : gencmd : set port1 5
+2019-01-12 23:15:22,386 : gencmd : set lib_path /opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork
+2019-01-12 23:15:22,386 : gencmd : set bidir True
+2019-01-12 23:15:22,387 : gencmd : set port 9127
+2019-01-12 23:15:22,387 : gencmd : set port2 6
+2019-01-12 23:15:22,387 : gencmd : set output_dir c:/ixia_results/vsperf_sandbox
+2019-01-12 23:15:22,387 : gencmd : set user vsperf_sandbox
+2019-01-12 23:15:22,387 : gencmd : set machine 10.10.120.6
+2019-01-12 23:15:22,387 : gencmd : set card 1
+2019-01-12 23:15:22,387 : gencmd : dict set traffic l4 srcport 3000
+2019-01-12 23:15:22,388 : gencmd : dict set traffic l4 enabled 1
+2019-01-12 23:15:22,388 : gencmd : dict set traffic l4 dstport 3001
+2019-01-12 23:15:22,388 : gencmd : dict set traffic traffic_type rfc2544_continuous
+2019-01-12 23:15:22,388 : gencmd : dict set traffic vlan id 0
+2019-01-12 23:15:22,388 : gencmd : dict set traffic vlan priority 0
+2019-01-12 23:15:22,388 : gencmd : dict set traffic vlan enabled 0
+2019-01-12 23:15:22,389 : gencmd : dict set traffic vlan cfi 0
+2019-01-12 23:15:22,389 : gencmd : dict set traffic multistream 0
+2019-01-12 23:15:22,389 : gencmd : dict set traffic bidir True
+2019-01-12 23:15:22,389 : gencmd : dict set traffic latency_histogram type Default
+2019-01-12 23:15:22,389 : gencmd : dict set traffic latency_histogram enabled 0
+2019-01-12 23:15:22,389 : gencmd : dict set traffic l2 srcmac 00:00:00:00:00:00
+2019-01-12 23:15:22,390 : gencmd : dict set traffic l2 framesize 512
+2019-01-12 23:15:22,390 : gencmd : dict set traffic l2 dstmac 00:00:00:00:00:00
+2019-01-12 23:15:22,390 : gencmd : dict set traffic learning_frames 1
+2019-01-12 23:15:22,390 : gencmd : dict set traffic burst_size 100
+2019-01-12 23:15:22,390 : gencmd : dict set traffic l3 proto udp
+2019-01-12 23:15:22,390 : gencmd : dict set traffic l3 dstip 90.90.90.90
+2019-01-12 23:15:22,391 : gencmd : dict set traffic l3 enabled 1
+2019-01-12 23:15:22,391 : gencmd : dict set traffic l3 srcip 1.1.1.1
+2019-01-12 23:15:22,391 : gencmd : dict set traffic stream_type L4
+2019-01-12 23:15:22,391 : gencmd : dict set traffic pre_installed_flows No
+2019-01-12 23:15:22,391 : gencmd : dict set traffic flow_type port
+2019-01-12 23:15:22,391 : gencmd : dict set traffic capture count 1
+2019-01-12 23:15:22,392 : gencmd : dict set traffic capture set tx_ports {0}
+2019-01-12 23:15:22,392 : gencmd : dict set traffic capture set rx_ports {1}
+2019-01-12 23:15:22,392 : gencmd : dict set traffic capture enabled 0
+2019-01-12 23:15:22,392 : gencmd : dict set traffic capture filter {}
+2019-01-12 23:15:22,392 : gencmd : dict set traffic flow_control 0
+2019-01-12 23:15:22,393 : gencmd : dict set traffic frame_rate 100
+2019-01-12 23:15:22,393 : gencmd : dict set traffic scapy 0 Ether(src={Ether_src}, dst={Ether_dst})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_src}, dst={IP_dst})/{IP_PROTO}(sport={IP_PROTO_sport}, dport={IP_PROTO_dport})
+2019-01-12 23:15:22,393 : gencmd : dict set traffic scapy 1 Ether(src={Ether_dst}, dst={Ether_src})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_dst}, dst={IP_src})/{IP_PROTO}(sport={IP_PROTO_dport}, dport={IP_PROTO_sport})
+2019-01-12 23:15:22,393 : gencmd : dict set traffic scapy enabled 0
+2019-01-12 23:15:22,393 : gencmd : dict set config rfc2544TestType throughput
+2019-01-12 23:15:22,393 : gencmd : dict set config streamType L4
+2019-01-12 23:15:22,394 : gencmd : dict set config binary 0
+2019-01-12 23:15:22,394 : gencmd : dict set config learningFrames True
+2019-01-12 23:15:22,394 : gencmd : dict set config flowControl False
+2019-01-12 23:15:22,394 : gencmd : dict set config multipleStreams 0
+2019-01-12 23:15:22,394 : gencmd : dict set config framerate 100
+2019-01-12 23:15:22,394 : gencmd : dict set config duration 30
+2019-01-12 23:15:22,394 : gencmd : source {/home/opnfv/vswitchperf_ieee_demo/3rd_party/ixia/ixnetrfc2544.tcl}
+2019-01-12 23:15:22,397 : gencmd : startRfc2544Test $config $traffic
+2019-01-12 23:16:20,749 : gencmd : waitForRfc2544Test
+2019-01-12 23:26:37,299 : IXIA configuration configuration : {'chassis': '10.10.50.6', 'port1': '5', 'lib_path': '/opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork', 'port': '9127', 'port2': '6', 'output_dir': 'c:/ixia_results/vsperf_sandbox', 'user': 'vsperf_sandbox', 'machine': '10.10.120.6', 'card': '1'}
+2019-01-12 23:26:37,300 : gencmd : set chassis 10.10.50.6
+2019-01-12 23:26:37,300 : gencmd : set port1 5
+2019-01-12 23:26:37,300 : gencmd : set lib_path /opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork
+2019-01-12 23:26:37,300 : gencmd : set bidir True
+2019-01-12 23:26:37,300 : gencmd : set port 9127
+2019-01-12 23:26:37,300 : gencmd : set port2 6
+2019-01-12 23:26:37,301 : gencmd : set output_dir c:/ixia_results/vsperf_sandbox
+2019-01-12 23:26:37,301 : gencmd : set user vsperf_sandbox
+2019-01-12 23:26:37,301 : gencmd : set machine 10.10.120.6
+2019-01-12 23:26:37,301 : gencmd : set card 1
+2019-01-12 23:26:37,301 : gencmd : dict set traffic l4 srcport 3000
+2019-01-12 23:26:37,301 : gencmd : dict set traffic l4 enabled 1
+2019-01-12 23:26:37,302 : gencmd : dict set traffic l4 dstport 3001
+2019-01-12 23:26:37,302 : gencmd : dict set traffic traffic_type rfc2544_continuous
+2019-01-12 23:26:37,302 : gencmd : dict set traffic vlan id 0
+2019-01-12 23:26:37,302 : gencmd : dict set traffic vlan priority 0
+2019-01-12 23:26:37,302 : gencmd : dict set traffic vlan enabled 0
+2019-01-12 23:26:37,302 : gencmd : dict set traffic vlan cfi 0
+2019-01-12 23:26:37,303 : gencmd : dict set traffic multistream 0
+2019-01-12 23:26:37,303 : gencmd : dict set traffic bidir True
+2019-01-12 23:26:37,303 : gencmd : dict set traffic latency_histogram type Default
+2019-01-12 23:26:37,303 : gencmd : dict set traffic latency_histogram enabled 0
+2019-01-12 23:26:37,303 : gencmd : dict set traffic l2 srcmac 00:00:00:00:00:00
+2019-01-12 23:26:37,303 : gencmd : dict set traffic l2 framesize 1024
+2019-01-12 23:26:37,304 : gencmd : dict set traffic l2 dstmac 00:00:00:00:00:00
+2019-01-12 23:26:37,304 : gencmd : dict set traffic learning_frames 1
+2019-01-12 23:26:37,304 : gencmd : dict set traffic burst_size 100
+2019-01-12 23:26:37,304 : gencmd : dict set traffic l3 proto udp
+2019-01-12 23:26:37,304 : gencmd : dict set traffic l3 dstip 90.90.90.90
+2019-01-12 23:26:37,304 : gencmd : dict set traffic l3 enabled 1
+2019-01-12 23:26:37,305 : gencmd : dict set traffic l3 srcip 1.1.1.1
+2019-01-12 23:26:37,305 : gencmd : dict set traffic stream_type L4
+2019-01-12 23:26:37,305 : gencmd : dict set traffic pre_installed_flows No
+2019-01-12 23:26:37,305 : gencmd : dict set traffic flow_type port
+2019-01-12 23:26:37,305 : gencmd : dict set traffic capture count 1
+2019-01-12 23:26:37,305 : gencmd : dict set traffic capture set tx_ports {0}
+2019-01-12 23:26:37,306 : gencmd : dict set traffic capture set rx_ports {1}
+2019-01-12 23:26:37,306 : gencmd : dict set traffic capture enabled 0
+2019-01-12 23:26:37,306 : gencmd : dict set traffic capture filter {}
+2019-01-12 23:26:37,306 : gencmd : dict set traffic flow_control 0
+2019-01-12 23:26:37,306 : gencmd : dict set traffic frame_rate 100
+2019-01-12 23:26:37,306 : gencmd : dict set traffic scapy 0 Ether(src={Ether_src}, dst={Ether_dst})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_src}, dst={IP_dst})/{IP_PROTO}(sport={IP_PROTO_sport}, dport={IP_PROTO_dport})
+2019-01-12 23:26:37,307 : gencmd : dict set traffic scapy 1 Ether(src={Ether_dst}, dst={Ether_src})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_dst}, dst={IP_src})/{IP_PROTO}(sport={IP_PROTO_dport}, dport={IP_PROTO_sport})
+2019-01-12 23:26:37,307 : gencmd : dict set traffic scapy enabled 0
+2019-01-12 23:26:37,307 : gencmd : dict set config rfc2544TestType throughput
+2019-01-12 23:26:37,307 : gencmd : dict set config streamType L4
+2019-01-12 23:26:37,307 : gencmd : dict set config binary 0
+2019-01-12 23:26:37,307 : gencmd : dict set config learningFrames True
+2019-01-12 23:26:37,308 : gencmd : dict set config flowControl False
+2019-01-12 23:26:37,308 : gencmd : dict set config multipleStreams 0
+2019-01-12 23:26:37,308 : gencmd : dict set config framerate 100
+2019-01-12 23:26:37,308 : gencmd : dict set config duration 30
+2019-01-12 23:26:37,308 : gencmd : source {/home/opnfv/vswitchperf_ieee_demo/3rd_party/ixia/ixnetrfc2544.tcl}
+2019-01-12 23:26:37,311 : gencmd : startRfc2544Test $config $traffic
+2019-01-12 23:27:34,331 : gencmd : waitForRfc2544Test
+2019-01-12 23:37:51,645 : IXIA configuration configuration : {'chassis': '10.10.50.6', 'port1': '5', 'lib_path': '/opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork', 'port': '9127', 'port2': '6', 'output_dir': 'c:/ixia_results/vsperf_sandbox', 'user': 'vsperf_sandbox', 'machine': '10.10.120.6', 'card': '1'}
+2019-01-12 23:37:51,645 : gencmd : set chassis 10.10.50.6
+2019-01-12 23:37:51,645 : gencmd : set port1 5
+2019-01-12 23:37:51,645 : gencmd : set lib_path /opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork
+2019-01-12 23:37:51,645 : gencmd : set bidir True
+2019-01-12 23:37:51,646 : gencmd : set port 9127
+2019-01-12 23:37:51,646 : gencmd : set port2 6
+2019-01-12 23:37:51,646 : gencmd : set output_dir c:/ixia_results/vsperf_sandbox
+2019-01-12 23:37:51,646 : gencmd : set user vsperf_sandbox
+2019-01-12 23:37:51,646 : gencmd : set machine 10.10.120.6
+2019-01-12 23:37:51,646 : gencmd : set card 1
+2019-01-12 23:37:51,647 : gencmd : dict set traffic l4 srcport 3000
+2019-01-12 23:37:51,647 : gencmd : dict set traffic l4 enabled 1
+2019-01-12 23:37:51,647 : gencmd : dict set traffic l4 dstport 3001
+2019-01-12 23:37:51,647 : gencmd : dict set traffic traffic_type rfc2544_continuous
+2019-01-12 23:37:51,647 : gencmd : dict set traffic vlan id 0
+2019-01-12 23:37:51,647 : gencmd : dict set traffic vlan priority 0
+2019-01-12 23:37:51,648 : gencmd : dict set traffic vlan enabled 0
+2019-01-12 23:37:51,648 : gencmd : dict set traffic vlan cfi 0
+2019-01-12 23:37:51,648 : gencmd : dict set traffic multistream 0
+2019-01-12 23:37:51,648 : gencmd : dict set traffic bidir True
+2019-01-12 23:37:51,648 : gencmd : dict set traffic latency_histogram type Default
+2019-01-12 23:37:51,648 : gencmd : dict set traffic latency_histogram enabled 0
+2019-01-12 23:37:51,649 : gencmd : dict set traffic l2 srcmac 00:00:00:00:00:00
+2019-01-12 23:37:51,649 : gencmd : dict set traffic l2 framesize 1280
+2019-01-12 23:37:51,649 : gencmd : dict set traffic l2 dstmac 00:00:00:00:00:00
+2019-01-12 23:37:51,649 : gencmd : dict set traffic learning_frames 1
+2019-01-12 23:37:51,649 : gencmd : dict set traffic burst_size 100
+2019-01-12 23:37:51,649 : gencmd : dict set traffic l3 proto udp
+2019-01-12 23:37:51,650 : gencmd : dict set traffic l3 dstip 90.90.90.90
+2019-01-12 23:37:51,650 : gencmd : dict set traffic l3 enabled 1
+2019-01-12 23:37:51,650 : gencmd : dict set traffic l3 srcip 1.1.1.1
+2019-01-12 23:37:51,650 : gencmd : dict set traffic stream_type L4
+2019-01-12 23:37:51,650 : gencmd : dict set traffic pre_installed_flows No
+2019-01-12 23:37:51,650 : gencmd : dict set traffic flow_type port
+2019-01-12 23:37:51,651 : gencmd : dict set traffic capture count 1
+2019-01-12 23:37:51,651 : gencmd : dict set traffic capture set tx_ports {0}
+2019-01-12 23:37:51,651 : gencmd : dict set traffic capture set rx_ports {1}
+2019-01-12 23:37:51,651 : gencmd : dict set traffic capture enabled 0
+2019-01-12 23:37:51,651 : gencmd : dict set traffic capture filter {}
+2019-01-12 23:37:51,652 : gencmd : dict set traffic flow_control 0
+2019-01-12 23:37:51,652 : gencmd : dict set traffic frame_rate 100
+2019-01-12 23:37:51,652 : gencmd : dict set traffic scapy 0 Ether(src={Ether_src}, dst={Ether_dst})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_src}, dst={IP_dst})/{IP_PROTO}(sport={IP_PROTO_sport}, dport={IP_PROTO_dport})
+2019-01-12 23:37:51,652 : gencmd : dict set traffic scapy 1 Ether(src={Ether_dst}, dst={Ether_src})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_dst}, dst={IP_src})/{IP_PROTO}(sport={IP_PROTO_dport}, dport={IP_PROTO_sport})
+2019-01-12 23:37:51,652 : gencmd : dict set traffic scapy enabled 0
+2019-01-12 23:37:51,652 : gencmd : dict set config rfc2544TestType throughput
+2019-01-12 23:37:51,653 : gencmd : dict set config streamType L4
+2019-01-12 23:37:51,653 : gencmd : dict set config binary 0
+2019-01-12 23:37:51,653 : gencmd : dict set config learningFrames True
+2019-01-12 23:37:51,653 : gencmd : dict set config flowControl False
+2019-01-12 23:37:51,653 : gencmd : dict set config multipleStreams 0
+2019-01-12 23:37:51,653 : gencmd : dict set config framerate 100
+2019-01-12 23:37:51,653 : gencmd : dict set config duration 30
+2019-01-12 23:37:51,654 : gencmd : source {/home/opnfv/vswitchperf_ieee_demo/3rd_party/ixia/ixnetrfc2544.tcl}
+2019-01-12 23:37:51,656 : gencmd : startRfc2544Test $config $traffic
+2019-01-12 23:38:48,833 : gencmd : waitForRfc2544Test
+2019-01-12 23:49:08,725 : IXIA configuration configuration : {'chassis': '10.10.50.6', 'port1': '5', 'lib_path': '/opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork', 'port': '9127', 'port2': '6', 'output_dir': 'c:/ixia_results/vsperf_sandbox', 'user': 'vsperf_sandbox', 'machine': '10.10.120.6', 'card': '1'}
+2019-01-12 23:49:08,726 : gencmd : set chassis 10.10.50.6
+2019-01-12 23:49:08,726 : gencmd : set port1 5
+2019-01-12 23:49:08,726 : gencmd : set lib_path /opt/ixnet/ixnetwork/8.01.1029.6/lib/IxTclNetwork
+2019-01-12 23:49:08,726 : gencmd : set bidir True
+2019-01-12 23:49:08,726 : gencmd : set port 9127
+2019-01-12 23:49:08,726 : gencmd : set port2 6
+2019-01-12 23:49:08,727 : gencmd : set output_dir c:/ixia_results/vsperf_sandbox
+2019-01-12 23:49:08,727 : gencmd : set user vsperf_sandbox
+2019-01-12 23:49:08,727 : gencmd : set machine 10.10.120.6
+2019-01-12 23:49:08,727 : gencmd : set card 1
+2019-01-12 23:49:08,727 : gencmd : dict set traffic l4 srcport 3000
+2019-01-12 23:49:08,727 : gencmd : dict set traffic l4 enabled 1
+2019-01-12 23:49:08,727 : gencmd : dict set traffic l4 dstport 3001
+2019-01-12 23:49:08,728 : gencmd : dict set traffic traffic_type rfc2544_continuous
+2019-01-12 23:49:08,728 : gencmd : dict set traffic vlan id 0
+2019-01-12 23:49:08,728 : gencmd : dict set traffic vlan priority 0
+2019-01-12 23:49:08,728 : gencmd : dict set traffic vlan enabled 0
+2019-01-12 23:49:08,728 : gencmd : dict set traffic vlan cfi 0
+2019-01-12 23:49:08,729 : gencmd : dict set traffic multistream 0
+2019-01-12 23:49:08,729 : gencmd : dict set traffic bidir True
+2019-01-12 23:49:08,729 : gencmd : dict set traffic latency_histogram type Default
+2019-01-12 23:49:08,729 : gencmd : dict set traffic latency_histogram enabled 0
+2019-01-12 23:49:08,729 : gencmd : dict set traffic l2 srcmac 00:00:00:00:00:00
+2019-01-12 23:49:08,729 : gencmd : dict set traffic l2 framesize 1518
+2019-01-12 23:49:08,730 : gencmd : dict set traffic l2 dstmac 00:00:00:00:00:00
+2019-01-12 23:49:08,730 : gencmd : dict set traffic learning_frames 1
+2019-01-12 23:49:08,730 : gencmd : dict set traffic burst_size 100
+2019-01-12 23:49:08,730 : gencmd : dict set traffic l3 proto udp
+2019-01-12 23:49:08,730 : gencmd : dict set traffic l3 dstip 90.90.90.90
+2019-01-12 23:49:08,730 : gencmd : dict set traffic l3 enabled 1
+2019-01-12 23:49:08,731 : gencmd : dict set traffic l3 srcip 1.1.1.1
+2019-01-12 23:49:08,731 : gencmd : dict set traffic stream_type L4
+2019-01-12 23:49:08,731 : gencmd : dict set traffic pre_installed_flows No
+2019-01-12 23:49:08,731 : gencmd : dict set traffic flow_type port
+2019-01-12 23:49:08,731 : gencmd : dict set traffic capture count 1
+2019-01-12 23:49:08,731 : gencmd : dict set traffic capture set tx_ports {0}
+2019-01-12 23:49:08,732 : gencmd : dict set traffic capture set rx_ports {1}
+2019-01-12 23:49:08,732 : gencmd : dict set traffic capture enabled 0
+2019-01-12 23:49:08,732 : gencmd : dict set traffic capture filter {}
+2019-01-12 23:49:08,732 : gencmd : dict set traffic flow_control 0
+2019-01-12 23:49:08,732 : gencmd : dict set traffic frame_rate 100
+2019-01-12 23:49:08,732 : gencmd : dict set traffic scapy 0 Ether(src={Ether_src}, dst={Ether_dst})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_src}, dst={IP_dst})/{IP_PROTO}(sport={IP_PROTO_sport}, dport={IP_PROTO_dport})
+2019-01-12 23:49:08,733 : gencmd : dict set traffic scapy 1 Ether(src={Ether_dst}, dst={Ether_src})/Dot1Q(prio={Dot1Q_prio}, id={Dot1Q_id}, vlan={Dot1Q_vlan})/IP(proto={IP_proto}, src={IP_dst}, dst={IP_src})/{IP_PROTO}(sport={IP_PROTO_dport}, dport={IP_PROTO_sport})
+2019-01-12 23:49:08,733 : gencmd : dict set traffic scapy enabled 0
+2019-01-12 23:49:08,733 : gencmd : dict set config rfc2544TestType throughput
+2019-01-12 23:49:08,733 : gencmd : dict set config streamType L4
+2019-01-12 23:49:08,733 : gencmd : dict set config binary 0
+2019-01-12 23:49:08,733 : gencmd : dict set config learningFrames True
+2019-01-12 23:49:08,734 : gencmd : dict set config flowControl False
+2019-01-12 23:49:08,734 : gencmd : dict set config multipleStreams 0
+2019-01-12 23:49:08,734 : gencmd : dict set config framerate 100
+2019-01-12 23:49:08,734 : gencmd : dict set config duration 30
+2019-01-12 23:49:08,734 : gencmd : source {/home/opnfv/vswitchperf_ieee_demo/3rd_party/ixia/ixnetrfc2544.tcl}
+2019-01-12 23:49:08,737 : gencmd : startRfc2544Test $config $traffic
+2019-01-12 23:50:08,452 : gencmd : waitForRfc2544Test
+2019-01-13 00:00:25,777 : dump flows
+2019-01-13 00:00:25,777 : Running ovs-ofctl...
+2019-01-13 00:00:25,777 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-ofctl --timeout 120 -O OpenFlow13 dump-flows vsperf-br0
+2019-01-13 00:00:25,808 : Stopping Collectd
+2019-01-13 00:00:25,808 : cmd : sudo pkill --signal 2 collectd
+2019-01-13 00:00:25,831 : Zipping File
+2019-01-13 00:00:25,831 : cmd : sudo tar -czvf /tmp/collectd-2019-01-12_22-50-39.tar.gz /tmp/csv/
+2019-01-13 00:00:25,880 : Cleaning up Metrics
+2019-01-13 00:00:25,880 : cmd : sudo rm -rf /tmp/csv/pod12-node4
+2019-01-13 00:00:25,897 : stop 0 VNF[s] with 
+2019-01-13 00:00:25,897 : Stop using <class 'ovs_dpdk_vhost.OvsDpdkVhost'>
+2019-01-13 00:00:25,897 : delete flow
+2019-01-13 00:00:25,898 : key : 
+2019-01-13 00:00:25,898 : Running ovs-ofctl...
+2019-01-13 00:00:25,898 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-ofctl --timeout 10 -O OpenFlow13 del-flows vsperf-br0 
+2019-01-13 00:00:25,912 : delete port
+2019-01-13 00:00:25,913 : Running ovs-vsctl...
+2019-01-13 00:00:25,913 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --timeout 10 del-port vsperf-br0 dpdk0
+2019-01-13 00:00:25,985 : delete port
+2019-01-13 00:00:25,985 : Running ovs-vsctl...
+2019-01-13 00:00:25,985 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --timeout 10 del-port vsperf-br0 dpdk1
+2019-01-13 00:00:26,189 : destroy bridge
+2019-01-13 00:00:26,189 : delete bridge
+2019-01-13 00:00:26,190 : Running ovs-vsctl...
+2019-01-13 00:00:26,190 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/ovs/ovs/utilities/ovs-vsctl --timeout 10 del-br vsperf-br0
+2019-01-13 00:00:26,239 : Terminating vswitchd...
+2019-01-13 00:00:26,239 : Killing ovs-vswitchd...
+2019-01-13 00:00:26,239 : cmd : sudo kill -15 55106
+2019-01-13 00:00:26,252 : Wait for process 55106 to terminate after signal -15
+2019-01-13 00:00:27,254 : Killing ovsdb with pid: 55089
+2019-01-13 00:00:27,254 : cmd : sudo kill -15 55089
+2019-01-13 00:00:27,268 : Wait for process 55089 to terminate after signal -15
+2019-01-13 00:00:28,269 : Restoring backup of ovs_var_tmp directory...
+2019-01-13 00:00:28,269 : cmd : sudo rm -rf /usr/local/var/run/openvswitch
+2019-01-13 00:00:28,283 : cmd : sudo mv /usr/local/var/run/openvswitch.20190112_225041_2743 /usr/local/var/run/openvswitch
+2019-01-13 00:00:28,296 : Restoring backup of ovs_etc_tmp directory...
+2019-01-13 00:00:28,296 : cmd : sudo rm -rf /usr/local/etc/openvswitch
+2019-01-13 00:00:28,308 : cmd : sudo mv /usr/local/etc/openvswitch.20190112_225041_2743 /usr/local/etc/openvswitch
+2019-01-13 00:00:28,321 : Log available at /tmp/vswitchd.log
+2019-01-13 00:00:28,321 : Vswitchd...Terminated.
+2019-01-13 00:00:28,322 : Unbinding NICs ['0000:06:00.0', '0000:06:00.1']...
+2019-01-13 00:00:28,322 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/dpdk/dpdk/usertools/dpdk-devbind.py --unbind 0000:06:00.0 0000:06:00.1
+2019-01-13 00:00:28,519 : Binding NIC 0000:06:00.0 to ixgbe...
+2019-01-13 00:00:28,519 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/dpdk/dpdk/usertools/dpdk-devbind.py --bind ixgbe 0000:06:00.0
+2019-01-13 00:00:28,866 : Binding NIC 0000:06:00.1 to ixgbe...
+2019-01-13 00:00:28,866 : cmd : sudo /home/opnfv/vswitchperf_ieee_demo/src/dpdk/dpdk/usertools/dpdk-devbind.py --bind ixgbe 0000:06:00.1
+2019-01-13 00:00:29,456 : Removing module 'igb_uio'...
+2019-01-13 00:00:29,761 : Removing module 'uio'...
+2019-01-13 00:00:29,791 : Following processes will be terminated: [55087]
+2019-01-13 00:00:29,812 : Unmounting hugepages...
+2019-01-13 00:00:29,814 : cmd : sudo umount /dev/hugepages
+2019-01-13 00:00:29,841 : Testcase execution time: 01:09:50
+2019-01-13 00:00:29,841 : self._collector Results:
+2019-01-13 00:00:29,842 : Traffic Results:
+2019-01-13 00:00:29,842 : Record: 0
+2019-01-13 00:00:29,842 :          Key: tx_rate_fps, Value: Unknown
+2019-01-13 00:00:29,842 :          Key: throughput_rx_fps, Value: 23519889.788
+2019-01-13 00:00:29,842 :          Key: tx_rate_mbps, Value: Unknown
+2019-01-13 00:00:29,842 :          Key: throughput_rx_mbps, Value: 12042.184
+2019-01-13 00:00:29,842 :          Key: tx_rate_percent, Value: 100
+2019-01-13 00:00:29,843 :          Key: throughput_rx_percent, Value: 79.027
+2019-01-13 00:00:29,843 :          Key: frame_loss_percent, Value: 20.972
+2019-01-13 00:00:29,843 :          Key: min_latency_ns, Value: 15000.000
+2019-01-13 00:00:29,843 :          Key: max_latency_ns, Value: 620260.000
+2019-01-13 00:00:29,843 :          Key: avg_latency_ns, Value: 472433.000
+2019-01-13 00:00:29,843 :          Key: type, Value: rfc2544_continuous
+2019-01-13 00:00:29,843 :          Key: packet_size, Value: 64
+2019-01-13 00:00:29,843 : Record: 1
+2019-01-13 00:00:29,843 :          Key: tx_rate_fps, Value: Unknown
+2019-01-13 00:00:29,844 :          Key: throughput_rx_fps, Value: 16889307.068
+2019-01-13 00:00:29,844 :          Key: tx_rate_mbps, Value: Unknown
+2019-01-13 00:00:29,844 :          Key: throughput_rx_mbps, Value: 17294.650
+2019-01-13 00:00:29,844 :          Key: tx_rate_percent, Value: 100
+2019-01-13 00:00:29,844 :          Key: throughput_rx_percent, Value: 99.985
+2019-01-13 00:00:29,844 :          Key: frame_loss_percent, Value: 0.014
+2019-01-13 00:00:29,844 :          Key: min_latency_ns, Value: 15300.000
+2019-01-13 00:00:29,844 :          Key: max_latency_ns, Value: 398820.000
+2019-01-13 00:00:29,844 :          Key: avg_latency_ns, Value: 181698.500
+2019-01-13 00:00:29,844 :          Key: type, Value: rfc2544_continuous
+2019-01-13 00:00:29,845 :          Key: packet_size, Value: 128
+2019-01-13 00:00:29,845 : Record: 2
+2019-01-13 00:00:29,845 :          Key: tx_rate_fps, Value: Unknown
+2019-01-13 00:00:29,845 :          Key: throughput_rx_fps, Value: 9057910.273
+2019-01-13 00:00:29,845 :          Key: tx_rate_mbps, Value: Unknown
+2019-01-13 00:00:29,845 :          Key: throughput_rx_mbps, Value: 18550.600
+2019-01-13 00:00:29,845 :          Key: tx_rate_percent, Value: 100
+2019-01-13 00:00:29,845 :          Key: throughput_rx_percent, Value: 100
+2019-01-13 00:00:29,845 :          Key: frame_loss_percent, Value: 0.000
+2019-01-13 00:00:29,845 :          Key: min_latency_ns, Value: 17800.000
+2019-01-13 00:00:29,846 :          Key: max_latency_ns, Value: 219640.000
+2019-01-13 00:00:29,846 :          Key: avg_latency_ns, Value: 123512.000
+2019-01-13 00:00:29,846 :          Key: type, Value: rfc2544_continuous
+2019-01-13 00:00:29,846 :          Key: packet_size, Value: 256
+2019-01-13 00:00:29,846 : Record: 3
+2019-01-13 00:00:29,846 :          Key: tx_rate_fps, Value: Unknown
+2019-01-13 00:00:29,846 :          Key: throughput_rx_fps, Value: 4699216.864
+2019-01-13 00:00:29,846 :          Key: tx_rate_mbps, Value: Unknown
+2019-01-13 00:00:29,846 :          Key: throughput_rx_mbps, Value: 19247.992
+2019-01-13 00:00:29,847 :          Key: tx_rate_percent, Value: 100
+2019-01-13 00:00:29,847 :          Key: throughput_rx_percent, Value: 100
+2019-01-13 00:00:29,847 :          Key: frame_loss_percent, Value: 0.000
+2019-01-13 00:00:29,847 :          Key: min_latency_ns, Value: 15160.000
+2019-01-13 00:00:29,847 :          Key: max_latency_ns, Value: 216040.000
+2019-01-13 00:00:29,847 :          Key: avg_latency_ns, Value: 119438.500
+2019-01-13 00:00:29,847 :          Key: type, Value: rfc2544_continuous
+2019-01-13 00:00:29,847 :          Key: packet_size, Value: 512
+2019-01-13 00:00:29,847 : Record: 4
+2019-01-13 00:00:29,848 :          Key: tx_rate_fps, Value: Unknown
+2019-01-13 00:00:29,848 :          Key: throughput_rx_fps, Value: 2394620.377
+2019-01-13 00:00:29,848 :          Key: tx_rate_mbps, Value: Unknown
+2019-01-13 00:00:29,848 :          Key: throughput_rx_mbps, Value: 19616.730
+2019-01-13 00:00:29,848 :          Key: tx_rate_percent, Value: 100
+2019-01-13 00:00:29,848 :          Key: throughput_rx_percent, Value: 100
+2019-01-13 00:00:29,848 :          Key: frame_loss_percent, Value: 0.000
+2019-01-13 00:00:29,848 :          Key: min_latency_ns, Value: 14760.000
+2019-01-13 00:00:29,848 :          Key: max_latency_ns, Value: 211480.000
+2019-01-13 00:00:29,848 :          Key: avg_latency_ns, Value: 115453.000
+2019-01-13 00:00:29,849 :          Key: type, Value: rfc2544_continuous
+2019-01-13 00:00:29,849 :          Key: packet_size, Value: 1024
+2019-01-13 00:00:29,849 : Record: 5
+2019-01-13 00:00:29,849 :          Key: tx_rate_fps, Value: Unknown
+2019-01-13 00:00:29,849 :          Key: throughput_rx_fps, Value: 1923064.411
+2019-01-13 00:00:29,849 :          Key: tx_rate_mbps, Value: Unknown
+2019-01-13 00:00:29,849 :          Key: throughput_rx_mbps, Value: 19692.180
+2019-01-13 00:00:29,849 :          Key: tx_rate_percent, Value: 100
+2019-01-13 00:00:29,849 :          Key: throughput_rx_percent, Value: 100
+2019-01-13 00:00:29,850 :          Key: frame_loss_percent, Value: 0.000
+2019-01-13 00:00:29,850 :          Key: min_latency_ns, Value: 17560.000
+2019-01-13 00:00:29,850 :          Key: max_latency_ns, Value: 213260.000
+2019-01-13 00:00:29,850 :          Key: avg_latency_ns, Value: 117453.000
+2019-01-13 00:00:29,850 :          Key: type, Value: rfc2544_continuous
+2019-01-13 00:00:29,850 :          Key: packet_size, Value: 1280
+2019-01-13 00:00:29,850 : Record: 6
+2019-01-13 00:00:29,850 :          Key: tx_rate_fps, Value: Unknown
+2019-01-13 00:00:29,850 :          Key: throughput_rx_fps, Value: 1625477.145
+2019-01-13 00:00:29,850 :          Key: tx_rate_mbps, Value: Unknown
+2019-01-13 00:00:29,851 :          Key: throughput_rx_mbps, Value: 19739.794
+2019-01-13 00:00:29,851 :          Key: tx_rate_percent, Value: 100
+2019-01-13 00:00:29,851 :          Key: throughput_rx_percent, Value: 100
+2019-01-13 00:00:29,851 :          Key: frame_loss_percent, Value: 0.000
+2019-01-13 00:00:29,851 :          Key: min_latency_ns, Value: 14500.000
+2019-01-13 00:00:29,851 :          Key: max_latency_ns, Value: 209440.000
+2019-01-13 00:00:29,851 :          Key: avg_latency_ns, Value: 113490.500
+2019-01-13 00:00:29,851 :          Key: type, Value: rfc2544_continuous
+2019-01-13 00:00:29,851 :          Key: packet_size, Value: 1518
+2019-01-13 00:00:29,852 : get_vnfs_number 0 VNF[s]
+2019-01-13 00:00:29,852 : get_vnfs_number 0 VNF[s]
+2019-01-13 00:00:29,852 : get_vnfs_number 0 VNF[s]
+2019-01-13 00:00:29,852 : get_vnfs_number 0 VNF[s]
+2019-01-13 00:00:29,852 : get_vnfs_number 0 VNF[s]
+2019-01-13 00:00:29,853 : get_vnfs_number 0 VNF[s]
+2019-01-13 00:00:29,853 : get_vnfs_number 0 VNF[s]
+2019-01-13 00:00:29,853 : Write results to file: /tmp/results_2019-01-12_22-50-39/result_0_phy2phy_cont_p2p.csv
+2019-01-13 00:00:30,406 : Test report written to "/tmp/results_2019-01-12_22-50-39/result_0_phy2phy_cont_p2p.md"
+2019-01-13 00:00:30,448 : Test report written to "/tmp/results_2019-01-12_22-50-39/result_0_phy2phy_cont_p2p.rst"
+2019-01-13 00:00:30,462 : Overall test report written to "/tmp/results_2019-01-12_22-50-39/OvsDpdkVhost_test_report.rst"
